@@ -167,11 +167,17 @@ export async function loadProgram(): Promise<void> {
   });
 }
 
+
 /**
  * Say hello
  */
 export async function sayHello(): Promise<void> {
-  console.log('Saying hello to', greetedPubkey.toBase58());
+  var greetedPubStr = greetedPubkey.toBase58()
+  var numUpper = greetedPubStr.length - greetedPubStr.replace(/[A-Z]/g, '').length;
+  console.log('Upper case chars: ', numUpper)
+  for(let i=0; i<numUpper; i++){
+  console.log('Run time: ', i)
+  console.log('Saying hello to', greetedPubStr);
   const instruction = new TransactionInstruction({
     keys: [{pubkey: greetedPubkey, isSigner: false, isWritable: true}],
     programId,
@@ -186,6 +192,7 @@ export async function sayHello(): Promise<void> {
       preflightCommitment: 'singleGossip',
     },
   );
+}
 }
 
 /**
