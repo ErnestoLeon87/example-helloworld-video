@@ -176,7 +176,7 @@ export async function sayHello(): Promise<void> {
   var numUpper = greetedPubStr.length - greetedPubStr.replace(/[A-Z]/g, '').length;
   console.log('Upper case chars: ', numUpper)
   for(let i=0; i<numUpper; i++){
-  console.log('Run time: ', i)
+  console.log('Run time: ', i+1)
   console.log('Saying hello to', greetedPubStr);
   const instruction = new TransactionInstruction({
     keys: [{pubkey: greetedPubkey, isSigner: false, isWritable: true}],

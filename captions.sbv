@@ -1,0 +1,689 @@
+0:00:00.240,0:00:04.080
+hello I'm Kaue from Brazil and in this
+
+0:00:02.639,0:00:05.520
+video I'll be doing a walkthrough
+
+0:00:04.080,0:00:09.120
+through Solana's new
+
+0:00:05.520,0:00:10.880
+Javascript API, more specifically
+
+0:00:09.120,0:00:12.639
+in this video we'll be taking a deeper
+
+0:00:10.880,0:00:16.880
+look into Solana's
+
+0:00:12.639,0:00:19.039
+example-helloworld repository in Github
+
+0:00:16.880,0:00:20.400
+showing you how to correctly install the
+
+0:00:19.039,0:00:24.000
+node package
+
+0:00:20.400,0:00:27.199
+set up your local Solana cluster build
+
+0:00:24.000,0:00:30.400
+both your rust or c-based project
+
+0:00:27.199,0:00:32.880
+then run it, modify it to make your own
+
+0:00:30.400,0:00:34.239
+and finally wrap up on how to close
+
+0:00:32.880,0:00:36.399
+everything down
+
+0:00:34.239,0:00:38.160
+and in order to make that happen there
+
+0:00:36.399,0:00:39.600
+are some requirements that this
+
+0:00:38.160,0:00:42.160
+repository has
+
+0:00:39.600,0:00:43.520
+first of all you need node.js and npm on
+
+0:00:42.160,0:00:45.440
+the latest version
+
+0:00:43.520,0:00:46.719
+the docker suite for your corresponding
+
+0:00:45.440,0:00:50.000
+operational system
+
+0:00:46.719,0:00:52.510
+wget for downloads and the whole
+
+0:00:50.000,0:00:53.680
+rust suite so you can build your project
+
+0:00:53.680,0:00:58.559
+for further resources regarding this and
+
+0:00:56.559,0:00:59.199
+other to Solana based projects you might
+
+0:00:58.559,0:01:00.800
+have
+
+0:00:59.199,0:01:03.760
+please check out their documents at the
+
+0:01:00.800,0:01:06.400
+following link, their Github repos
+
+0:01:03.760,0:01:07.840
+which comes with other awesome examples
+
+0:01:06.400,0:01:08.560
+and you can also reach out to me on
+
+0:01:07.840,0:01:11.439
+discord
+
+0:01:08.560,0:01:12.799
+using my username, Solana also has a very
+
+0:01:11.439,0:01:15.360
+active discord
+
+0:01:12.799,0:01:16.960
+user base, you can find its link in the
+
+0:01:15.360,0:01:19.280
+official website
+
+0:01:16.960,0:01:22.320
+to it then, first of all i'm going to
+
+0:01:19.280,0:01:22.320
+fork the repo
+
+0:01:23.840,0:01:27.200
+so I can later make my code available
+
+0:01:26.159,0:01:30.079
+for you guys
+
+0:01:27.200,0:01:32.720
+so, let's clone it into our working
+
+0:01:30.079,0:01:32.720
+directory
+
+0:01:33.759,0:01:40.560
+so, it's all done, I'm going to open
+
+0:01:37.439,0:01:41.759
+this folder on VSCode so we can code
+
+0:01:40.560,0:01:43.920
+it away
+
+0:01:41.759,0:01:45.200
+right now it's a good time to start up
+
+0:01:43.920,0:01:48.320
+our docker
+
+0:01:45.200,0:01:48.720
+service since i'm using Mac OS and I'm
+
+0:01:48.320,0:01:52.720
+not
+
+0:01:48.720,0:01:55.360
+using the native Mac application
+
+0:01:52.720,0:01:57.040
+I just installed a virtual machine to
+
+0:01:55.360,0:01:59.920
+run docker
+
+0:01:57.040,0:02:01.119
+there is some extra steps I have to take
+
+0:01:59.920,0:02:04.240
+they are detailed
+
+0:02:01.119,0:02:07.040
+here, there's this extra
+
+0:02:04.240,0:02:08.239
+port forwarding command that I have to
+
+0:02:07.040,0:02:09.920
+do and
+
+0:02:08.239,0:02:11.680
+this is actually lacking one other
+
+0:02:09.920,0:02:12.959
+command that we need in order to make
+
+0:02:11.680,0:02:16.280
+this repo work
+
+0:02:12.959,0:02:19.440
+which is to part forward this
+
+0:02:16.280,0:02:21.440
+8900 as well so
+
+0:02:19.440,0:02:22.879
+yeah, it's pretty standard, I already have
+
+0:02:21.440,0:02:25.680
+the docker, docker-machine
+
+0:02:22.879,0:02:26.959
+and virtualbox installed, so i'm just
+
+0:02:25.680,0:02:30.319
+going to
+
+0:02:26.959,0:02:30.319
+start my docker-machine
+
+0:02:33.519,0:02:36.959
+and then, if we try to list docker right
+
+0:02:36.560,0:02:40.319
+now
+
+0:02:36.959,0:02:43.519
+it's still not fining or daemon
+
+0:02:40.319,0:02:44.560
+so, what we need to use is this eval
+
+0:02:43.519,0:02:46.640
+function
+
+0:02:44.560,0:02:48.239
+so it's exported to our environment and
+
+0:02:46.640,0:02:51.200
+right now if we do
+
+0:02:48.239,0:02:51.760
+docker ps, we can check that it's running
+
+0:02:51.200,0:02:54.720
+right now
+
+0:02:51.760,0:02:55.599
+we can proceed to the repo instructions
+
+0:02:54.720,0:02:58.480
+itself
+
+0:02:55.599,0:03:00.239
+install the Solana Javascript API
+
+0:02:58.480,0:03:04.400
+which is done by
+
+0:03:00.239,0:03:08.980
+npm, or through yarn
+
+0:03:04.400,0:03:12.540
+i'm choosing npm so let's run this
+
+0:03:13.360,0:03:16.480
+so after 12 seconds everything is
+
+0:03:15.280,0:03:18.800
+already installed
+
+0:03:16.480,0:03:20.080
+so we are ready to go to follow through
+
+0:03:18.800,0:03:23.440
+with this tutorial
+
+0:03:20.080,0:03:26.080
+so, first of all, we need to export this
+
+0:03:23.440,0:03:27.680
+environment variable here which is
+
+0:03:26.080,0:03:30.400
+telling us
+
+0:03:27.680,0:03:31.680
+all these Solana variables needed in
+
+0:03:30.400,0:03:34.959
+order to
+
+0:03:31.680,0:03:38.430
+load the correct configuration, so
+
+0:03:34.959,0:03:40.799
+we're going to update our docker image
+
+0:03:40.799,0:03:43.840
+done, so it's already up to date, we
+
+0:03:42.720,0:03:47.920
+already have the
+
+0:03:43.840,0:03:53.040
+latest Solana image, and right now we can
+
+0:03:47.920,0:03:53.040
+start our local test network
+
+0:03:55.439,0:03:58.799
+so yeah, it's running right now you can
+
+0:03:58.400,0:04:01.840
+check
+
+0:03:58.799,0:04:05.519
+if it's running or not by running this
+
+0:04:01.840,0:04:08.480
+which shows the logs on the foreground
+
+0:04:05.519,0:04:08.879
+and to exit this you just have to cancel
+
+0:04:08.879,0:04:13.040
+the runtime twice so in my case it's
+
+0:04:11.280,0:04:15.360
+ctrl c
+
+0:04:13.040,0:04:16.479
+okay so it's running all right you can
+
+0:04:15.360,0:04:19.840
+check this
+
+0:04:16.479,0:04:23.040
+it's actually up to date
+
+0:04:19.840,0:04:24.560
+with the official node, in the source
+
+0:04:23.040,0:04:27.360
+folder we can see two
+
+0:04:24.560,0:04:29.759
+different examples one is built on rust
+
+0:04:27.360,0:04:32.960
+and the other one is built on c
+
+0:04:29.759,0:04:35.600
+we're going to be building the program c
+
+0:04:32.960,0:04:36.479
+directory here if you want to do another
+
+0:04:35.600,0:04:39.840
+kind of program
+
+0:04:36.479,0:04:43.199
+all you have to do is make another
+
+0:04:39.840,0:04:44.560
+folder here and then change the name
+
+0:04:43.199,0:04:48.320
+here accordingly
+
+0:04:44.560,0:04:52.240
+but in our case let's just run
+
+0:04:48.320,0:04:52.240
+the standard example for the time being
+
+0:04:52.639,0:04:57.199
+so okay, our directory was correctly
+
+0:04:56.240,0:04:58.960
+built
+
+0:04:57.199,0:05:01.919
+as you can see it's tested and it's
+
+0:04:58.960,0:05:06.080
+passing and all we need to do right now
+
+0:05:01.919,0:05:08.960
+is npm run start
+
+0:05:06.080,0:05:10.000
+and yeah that's it! if you look at the
+
+0:05:08.960,0:05:12.720
+code itself
+
+0:05:10.000,0:05:15.039
+is actually getting the Solana
+
+0:05:12.720,0:05:18.320
+parameters that it's getting from the
+
+0:05:15.039,0:05:20.639
+SDK header file and then it's checking
+
+0:05:18.320,0:05:23.919
+for some inconsistencies that we
+
+0:05:20.639,0:05:24.320
+fortunately did not run into, and after
+
+0:05:23.919,0:05:28.000
+all
+
+0:05:24.320,0:05:30.720
+it's going to just greet
+
+0:05:28.000,0:05:31.440
+our address here - our transaction - one
+
+0:05:30.720,0:05:35.440
+time
+
+0:05:31.440,0:05:38.160
+and log a hello with the success message
+
+0:05:35.440,0:05:39.759
+so, that's basically what happened here
+
+0:05:38.160,0:05:44.560
+very simple program
+
+0:05:39.759,0:05:45.870
+and if we want to do the same for rust
+
+0:05:44.560,0:05:51.600
+it's just the same command
+
+0:05:51.600,0:05:54.720
+so it took a lot more time to compile
+
+0:05:53.680,0:05:57.520
+the rust program
+
+0:05:54.720,0:05:58.080
+but once we run the same command you can
+
+0:05:57.520,0:06:00.960
+see that
+
+0:05:58.080,0:06:01.840
+as expected in a blockchain, the program
+
+0:06:00.960,0:06:04.960
+count
+
+0:06:01.840,0:06:06.080
+is still running, you have to keep in
+
+0:06:04.960,0:06:08.639
+mind that you don't have
+
+0:06:06.080,0:06:10.240
+the whole flexibility of the rust or the
+
+0:06:08.639,0:06:12.479
+c program languages
+
+0:06:10.240,0:06:13.600
+not even their standard libraries
+
+0:06:12.479,0:06:16.000
+because
+
+0:06:13.600,0:06:16.639
+since we're using a blockchain
+
+0:06:16.000,0:06:18.960
+everything
+
+0:06:16.639,0:06:20.080
+running there must be deterministic and
+
+0:06:18.960,0:06:22.800
+that prevents us from
+
+0:06:20.080,0:06:23.919
+using random functions time-based and
+
+0:06:22.800,0:06:27.199
+clock-based
+
+0:06:23.919,0:06:28.080
+thread-based functions as well so here
+
+0:06:27.199,0:06:31.280
+you can see
+
+0:06:28.080,0:06:33.520
+what's listed on for rust but
+
+0:06:31.280,0:06:35.199
+the same principles can be applied for c
+
+0:06:33.520,0:06:36.960
+so if we go here
+
+0:06:35.199,0:06:38.960
+and we try to include some standard
+
+0:06:36.960,0:06:41.919
+libraries like
+
+0:06:38.960,0:06:41.919
+time.h
+
+0:06:42.479,0:06:49.280
+or typec for instance
+
+0:06:46.160,0:06:50.720
+the program is going to crash and you
+
+0:06:49.280,0:06:54.319
+can't also use
+
+0:06:50.720,0:06:57.840
+implicit functions such as the very
+
+0:06:54.319,0:07:01.120
+classic printf as it's going
+
+0:06:57.840,0:07:02.880
+to cause a build error because it's
+
+0:07:01.120,0:07:06.639
+not importing directly from your
+
+0:07:02.880,0:07:08.479
+compiler, it's using the Solana SDK
+
+0:07:06.639,0:07:11.120
+so this is one thing that you have to
+
+0:07:08.479,0:07:14.400
+keep in mind, but for the time being
+
+0:07:11.120,0:07:15.919
+what we are going to do here is just
+
+0:07:14.400,0:07:17.599
+little by little modify the hello
+
+0:07:15.919,0:07:19.599
+world typescript, which
+
+0:07:17.599,0:07:21.360
+after modifying we don't need to rebuild
+
+0:07:19.599,0:07:24.479
+the program, we just need to
+
+0:07:21.360,0:07:27.599
+run npm run start once again
+
+0:07:24.479,0:07:28.479
+in order to see it work, so one thing
+
+0:07:27.599,0:07:31.520
+that we can do
+
+0:07:28.479,0:07:32.560
+is just let's just say that we want to
+
+0:07:31.520,0:07:36.080
+say more hellos
+
+0:07:32.560,0:07:37.280
+so let's just make our sayHello
+
+0:07:36.080,0:07:42.639
+function
+
+0:07:37.280,0:07:42.639
+be a loop for instance and see what
+
+0:07:42.840,0:07:45.840
+happens
+
+0:07:47.280,0:07:50.960
+as you can see, it's sequentially saying
+
+0:07:50.160,0:07:54.080
+a lot of
+
+0:07:50.960,0:07:55.120
+hellos, and this we can see that it's
+
+0:07:54.080,0:07:58.560
+permanently
+
+0:07:55.120,0:08:01.199
+registered in our cluster but
+
+0:07:58.560,0:08:02.800
+in typescript, am I bound to the same
+
+0:08:01.199,0:08:06.000
+limitations that I mentioned
+
+0:08:02.800,0:08:09.599
+both for c and for rust? Let's check it out
+
+0:08:06.000,0:08:12.960
+so let's create a function called
+
+0:08:09.599,0:08:14.080
+delay which is time based and it's going
+
+0:08:12.960,0:08:16.720
+to
+
+0:08:14.080,0:08:19.759
+make our program wait and call it
+
+0:08:16.720,0:08:22.400
+insider little loop here
+
+0:08:19.759,0:08:23.599
+as you can see, it is waiting now let's
+
+0:08:22.400,0:08:26.240
+do the following:
+
+0:08:23.599,0:08:27.520
+let's count the amount of characters in
+
+0:08:26.240,0:08:30.560
+our greeted public
+
+0:08:27.520,0:08:31.199
+key that are uppercase and greet this
+
+0:08:30.560,0:08:35.839
+address
+
+0:08:31.199,0:08:35.839
+the corresponding amount of times so
+
+0:08:38.839,0:08:44.000
+allright
+
+0:08:41.360,0:08:44.800
+and as you can see here, I've counted
+
+0:08:44.000,0:08:50.240
+manually
+
+0:08:44.800,0:08:52.720
+it is 25 uppercase characters
+
+0:08:50.240,0:08:55.040
+here we could just put i+1 one to
+
+0:08:52.720,0:08:58.000
+make it more
+
+0:08:55.040,0:09:00.000
+easy to understand but as you can see
+
+0:08:58.000,0:09:02.640
+all the greetings have been
+
+0:09:00.000,0:09:03.440
+successfully done and yeah I hope you
+
+0:09:02.640,0:09:06.399
+liked the video
+
+0:09:03.440,0:09:07.680
+I hope you found it very instructive for
+
+0:09:06.399,0:09:10.160
+any other doubts
+
+0:09:07.680,0:09:11.360
+you can check out uh the solana-labs'
+
+0:09:10.160,0:09:13.760
+repos
+
+0:09:11.360,0:09:14.480
+you can reach out to them on Discord
+
+0:09:13.760,0:09:17.600
+they're
+
+0:09:14.480,0:09:19.120
+very competent people and the project's
+
+0:09:17.600,0:09:21.120
+really awesome
+
+0:09:19.120,0:09:22.560
+and yeah, I hope I see you guys in the
+
+0:09:21.120,0:09:26.640
+next video and
+
+0:09:22.560,0:09:26.640
+keep on coding!
